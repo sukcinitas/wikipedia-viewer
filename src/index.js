@@ -39,7 +39,7 @@ class App extends React.Component {
     render () {
         return (
         <div className="d-flex flex-column align-items-center mb-5">
-            <h1 className="display-3 mt-5">Wikipedia Viewer</h1>
+            <h1 className="display-3 text-center my-5">Wikipedia Viewer</h1>
             <form className="mt-5 mb-2">
                 <div className="input-group">
                     <input className="form-control" type="text" placeholder="Search" value={this.state.input} onChange={this.handleChange}/>
