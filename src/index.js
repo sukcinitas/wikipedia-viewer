@@ -1,50 +1,32 @@
 import Bootstrap from "bootstrap/dist/css/bootstrap.css";
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
-import Card from "./components/Card"
+import Card from "./components/Card";
 
+function App() {
+    const [input, setInput] = useState("");
+    const [wikipediaEntries, setWikipediaEntries] = useState([]);
 
-class App extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            input: "",
-            wikipediaEntries: []
-        }
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-    }
-
-    handleChange(e) {
-        this.setState({
-            input: e.target.value
-        })
-    }
-
-    handleSubmit(e) {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        let phrase = encodeURI(this.state.input);
+        let phrase = encodeURI(input);
         fetch(`https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${phrase}&format=json&origin=*`)
-            .then((response) => {
-                return response.json();
-            })
+            .then((response) => response.json())
             .then((data) => {
-                this.setState({
-                    wikipediaEntries: [...data.query.search],
-                    input: ""
-                })
-            });
+                setWikipediaEntries([...data.query.search]);
+                setInput("");
+            })
     }
 
-    render () {
-        return (
+    const wikipediaEntriesList = wikipediaEntries.map(entry => <Card key={entry.pageid} info={entry}/>)
+    return (
         <div className="d-flex flex-column align-items-center mb-5">
             <h1 className="display-3 text-center my-5">Wikipedia Viewer</h1>
             <form className="mt-5 mb-2">
                 <div className="input-group">
-                    <input className="form-control" type="text" placeholder="Search" value={this.state.input} onChange={this.handleChange}/>
+                    <input className="form-control" type="text" placeholder="Search" value={input} onChange={e => setInput(e.target.value)}/>
                     <div className="input-group-append">
-                    <button className="btn btn-dark" type="submit" onClick={this.handleSubmit}>
+                    <button className="btn btn-dark" type="submit" onClick={handleSubmit} disabled={!input}>
                         <i className="fas fa-search" aria-hidden="true"></i>
                     </button>
                     </div>
@@ -52,13 +34,10 @@ class App extends React.Component {
             </form>
             <a className="btn btn-dark" href="https://en.wikipedia.org/wiki/Special:Random">Get a random article</a>
             <div className="mt-5 w-75">
-                {this.state.wikipediaEntries.map(entry => {
-                    return <Card key={entry.pageid} info={entry}/>
-                })} 
+                {wikipediaEntriesList} 
             </div> 
         </div>
-        )
-    }
+    )
 }
 
 ReactDOM.render(<App/>, document.getElementById("root"))
