@@ -20,8 +20,7 @@ export default function Card({ info }) {
         <a
           href={link}
           className="card-link stretched-link"
-          noopener="true"
-          noreferrer="true"
+          rel="noopener noreferrer"
           target="_blank"
         >
           Read the full article

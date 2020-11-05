@@ -49,8 +49,7 @@ function App() {
       </form>
       <a
         className="btn btn-dark"
-        noopener="true"
-        noreferrer="true"
+        rel="noopener noreferrer"
         target="_blank"
         href="https://en.wikipedia.org/wiki/Special:Random"
       >
