@@ -1,6 +1,6 @@
 # Wikipedia Viewer
 
-An application for searching Wikipedia articles or getting a random one, based on **MediaWiki API**. The main motivation behind building this app was a wish to try Bootstrap 4. You can find the demo [here](https://codepen.io/pieno_usas/full/ExabqYB).
+An application for searching Wikipedia articles or getting a random one, based on **MediaWiki API**. The main motivation behind building this app was a wish to try Bootstrap 4. You can find the demo [here](https://codepen.io/sukcinitas/full/ExabqYB).
 
 ---
 
