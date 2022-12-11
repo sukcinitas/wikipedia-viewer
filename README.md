@@ -8,7 +8,7 @@ An application for searching Wikipedia articles or getting a random one, based o
 
 - React
 - Bootstrap 4
-- Webpack 4
+- Webpack 5
 - Babel
 - Prettier
 
